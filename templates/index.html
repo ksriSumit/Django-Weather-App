@@ -1,12 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+  <meta charset="utf-8">
+  <title>Django Weather App</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 </head>
+
 <body>
-    <h1>Hello Everyone</h1>
+  <nav class="row" style="background: grey; color: white;">
+    <div align="center"><h1 class="col-md-3 text-center">Know Weather of your Location</h1></div>
+  </nav>
+  <br />
+  <br />
+  <center class="row">
+    <form action="" method="post" class="col-md-6 col-md-offset-3">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" class="form-control" name="city" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+        <form>
+  </center>
+  <div class="row">
+    {% if weather_data.CountryCode %}
+    <div class="col-md-6 col-md-offset-3">
+      <h1>{{city}}</h1>
+      <h3>Country code : {{weather_data.CountryCode}}</h1>
+        <h5>Latitude : {{weather_data.lat}}</h5>
+        <h5>Longitude : {{weather_data.long}}</h5>
+        <h5>Description : {{weather_data.weatherDescription}}</h5>
+        <h5>Current Temperature: {{weather_data.currentTemperature}}</h5>
+        <h5>Feels Like: {{weather_data.feelslike}}</h5>
+        <h5>Minimum Temperature: {{weather_data.mintemp}}</h5>
+        <h5>Maximum Temperature: {{weather_data.maxtemp}}</h5>
+        <h5>Pressure: {{weather_data.pressure}}</h5>
+        <h5>Humidity: {{weather_data.humidity}}</h5>
+        <h5>WindSpeed: {{weather_data.windSpeed}}</h5>
+    </div>
+    {% endif %}
+  </div>
 </body>
+
 </html>
